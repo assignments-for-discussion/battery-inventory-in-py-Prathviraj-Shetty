@@ -11,7 +11,7 @@ def count_batteries_by_health(present_capacities):
         #Classifying the batteries based on calculated SoH values int healthy,exchange and failed batteries
         if(cur_battery_SoH>80):
            healthy_battery_count=healthy_battery_count+1
-        elif(cur_battery_SoH>62 and cur_battery_SoH<80):
+        elif(cur_battery_SoH>=62 and cur_battery_SoH<=80):
            exchange_battery_count=exchange_battery_count+1
         else:
            failed_battery_count=failed_battery_count+1
@@ -31,7 +31,18 @@ def test_bucketing_by_health():
   assert(counts["exchange"] == 3)
   assert(counts["failed"] == 1)
   print("Done counting :)")
+    
+def test_bucketing_by_health_2():
+  print("Counting batteries by SoH...\n")
+  #Here in this sample test case, we'll consider the present_capacities,i.e 96 and 74.4 that will give SoH values 80 ans 62 respectively, to test for boundary conditions 
+  present_capacities = [96, 6, 74.4, 0, 112, 90]
+  counts = count_batteries_by_health(present_capacities)
+  assert(counts["healthy"] == 1)
+  assert(counts["exchange"] == 2)
+  assert(counts["failed"] == 3)
+  print("Done counting :)")
 
 
 if __name__ == '__main__':
-  test_bucketing_by_health()
+    test_bucketing_by_health()
+    test_bucketing_by_health_2()
