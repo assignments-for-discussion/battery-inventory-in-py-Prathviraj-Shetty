@@ -34,12 +34,13 @@ def test_bucketing_by_health():
     
 def test_bucketing_by_health_2():
   print("Counting batteries by SoH...\n")
-  #Here in this sample test case, we'll consider the present_capacities,i.e 96Ah and 74.4Ah that will give SoH values 80% ans 62% respectively, to test for boundary conditions 
-  present_capacities = [96, 6, 74.4, 0, 112, 90]
+  #Here in this sample test case, we'll consider the present_capacities,i.e 96Ah,74.4Ah,0Ah and 120Ah that will give SoH values 80%,62%,0% and 100% respectively, to test for boundary conditions 
+  present_capacities = [96, 6, 74.4, 0, 120, 90]
   counts = count_batteries_by_health(present_capacities)
+  print(counts)
   assert(counts["healthy"] == 1)
-  assert(counts["exchange"] == 2)
-  assert(counts["failed"] == 3)
+  assert(counts["exchange"] == 3)
+  assert(counts["failed"] == 2)
   print("Done counting :)")
 
 
