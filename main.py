@@ -1,7 +1,7 @@
 
 def count_batteries_by_health(present_capacities):
     SoH=[]
-    # SoH list maintains the SoH value of each battery
+    # SoH list maintains the SoH value of each battery in percentage
     healthy_battery_count=0    #Maintains the healthy_battery_count
     exchange_battery_count=0    #Maintains the exchange_battery_count
     failed_battery_count=0  #Maintains the failed_battery_count
@@ -34,7 +34,7 @@ def test_bucketing_by_health():
     
 def test_bucketing_by_health_2():
   print("Counting batteries by SoH...\n")
-  #Here in this sample test case, we'll consider the present_capacities,i.e 96 and 74.4 that will give SoH values 80 ans 62 respectively, to test for boundary conditions 
+  #Here in this sample test case, we'll consider the present_capacities,i.e 96Ah and 74.4Ah that will give SoH values 80% ans 62% respectively, to test for boundary conditions 
   present_capacities = [96, 6, 74.4, 0, 112, 90]
   counts = count_batteries_by_health(present_capacities)
   assert(counts["healthy"] == 1)
